@@ -1,0 +1,25 @@
+*{
+  padding: 0;
+  margin: 0;
+  line-height: 1.5em;
+}
+
+.container{
+  
+  background-color: whitesmoke;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  margin-top: 7vh;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 20px grey;
+  box-sizing: border-box;
+}
+
+
+.main_title{
+  font-family: 'Open Sans';
+  margin: 15px;
+}
