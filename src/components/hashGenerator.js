@@ -8,9 +8,13 @@ const generateHash = (files) => {
         
       return new Promise((resolve, reject) =>{
         reader.onload = () => {
-            const fileResult = reader.result;
+            const dataUrl = reader.result; // e.g., data:image/jpeg;base64,/9j/4AAQSk...
+            const base64 = dataUrl.split(',')[1]; // ✅ Strip the MIME prefix
+
+            // Encode the base64 string as a UTF-8 byte array
+            const encoded = new TextEncoder().encode(base64);
             
-            crypto.subtle.digest('SHA-256', fileResult).then((hash) => {
+            crypto.subtle.digest('SHA-256', encoded).then((hash) => {
               var sha256result = hex(hash);
               // this should contain your sha-256 hash value
               console.log(sha256result);
@@ -24,27 +28,8 @@ const generateHash = (files) => {
       
           // calling reader.readAsArrayBuffer and providing a file should trigger the callback above 
           // as soon as readAsArrayBuffer is complete
-          reader.readAsArrayBuffer(file);
-      });
-
-
-      // provide an onload callback for this instance of FileReader
-      // this is called once reader.readAsArrayBuffer() is done
-      reader.onload = () => {
-        const fileResult = reader.result;
-        
-        crypto.subtle.digest('SHA-256', fileResult).then((hash) => {
-          var sha256result = hex(hash);
-          // this should contain your sha-256 hash value
-          console.log(sha256result);
-          return sha256result;
-        });
-      };
-  
-      // calling reader.readAsArrayBuffer and providing a file should trigger the callback above 
-      // as soon as readAsArrayBuffer is complete
-      reader.readAsArrayBuffer(file);
-    
+          reader.readAsDataURL(file);
+      });  
   }
     
   
