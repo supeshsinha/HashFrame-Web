@@ -5,7 +5,7 @@ import HomeIcon from '@mui/icons-material/Home';
 
 const HomeButton = ({handler}) => {
   return (
-    <Stack spacing={2} direction="row">
+    <Stack spacing={2} direction="row" justifyContent="center">
         <Button variant="outlined" startIcon={<HomeIcon />} onClick={handler}>
           Verify another Image.
         </Button>

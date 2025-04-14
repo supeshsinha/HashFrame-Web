@@ -3,6 +3,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import './App.css'
 import InputFileUpload from './components/InputFileUpload'
 import HomeButton from './components/HomeButton';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import DangerousIcon from '@mui/icons-material/Dangerous';
+import logo from './assets/logo_512.png';
 
 function App() {
 
@@ -28,9 +31,13 @@ function App() {
 
   return (
     <div className='container'>
+      <h1 className='main_title'>HashFrame</h1>
       {status == "unchecked" ? 
       <>
-          <h1 className='main_title'>HashFrame</h1>
+          <div className="flex"><img src={logo} className="logo"/> <p className='big_text'><br/>In this era of AI and hyper-realistic fake images, Ensuring image integrity is more important than ever. <br/>
+          HashFrame is a Blockchain based image integrity verification system to re-establish trust in images.<br/>
+          It can verify whether a particular image has been clicked from HashFrame Camera App.</p></div>
+          <br/><p>Upload your image to verify its authenticity.</p><br/>
           {loading? 
             <CircularProgress />
           :
@@ -38,13 +45,22 @@ function App() {
           }
       </>
           : (status == "exists") ?
-          <>
-        <p>Image is authentic</p>
+      <>
+        <CheckCircleIcon style={{ fontSize: '100px', color: 'green', padding: '25px' }} />
+          
+        <div className="flex" style={{justifyContent: 'center'}}>
+        <p className='big_text' style={{textAlign: 'center'}}>Image is authentic</p>
+        </div>
+        <br/>
         <HomeButton handler = {handleHome}/>
       </>
       :
       <>
-        <p>Image authenticity cannot be determined</p>
+        <DangerousIcon style={{ fontSize: '100px', color: 'red', padding: '25px' }} />
+        <div className="flex" style={{justifyContent: 'center'}}>
+        <p className='big_text' style={{textAlign: 'center'}}>Image authenticity cannot be determined</p>
+        </div>
+        <br/>
         <HomeButton handler = {handleHome}/>
       </>
       }

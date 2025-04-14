@@ -20,6 +20,35 @@
 
 
 .main_title{
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   margin: 15px;
+}
+
+.flex{
+  display: flex;
+}
+
+.logo{
+  width: 25%;
+  margin: 10px;
+}
+
+.big_text{
+  font-size: larger;
+  font-family: 'Roboto';
+  text-align: justify;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 600px){
+  .flex{
+    display: block;
+  }
+  .logo{
+    width: 70%;
+  }
+  .container{
+    margin-top: 0;
+    min-height: 95vh;
+  }
 }
